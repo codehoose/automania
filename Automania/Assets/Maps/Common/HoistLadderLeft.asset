@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HoistLadderLeft
   m_EditorClassIdentifier: 
   prefab: {fileID: 2503382601402603510, guid: 47de1f9ab36dd894d94394cfe693bf19, type: 3}
-  position: {x: 72, y: -80, z: 0}
+  position: {x: 72, y: -72, z: 0}

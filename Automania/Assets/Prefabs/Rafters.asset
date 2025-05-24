@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fbfdb2a6696b7f418ed8058639634e4, type: 3}
-  m_Name: HoistLadderRight
+  m_Script: {fileID: 11500000, guid: 766574488a5cbbd40804d61bda23deae, type: 3}
+  m_Name: Rafters
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2503382601402603510, guid: 47de1f9ab36dd894d94394cfe693bf19, type: 3}
-  position: {x: 168, y: -72, z: 0}
+  position: {x: 0, y: 0}
+  size: {x: 32, y: 1}
+  ink: {r: 0.8666667, g: 0, b: 0, a: 1}
+  paper: {r: 0, g: 0, b: 0, a: 1}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbfdb2a6696b7f418ed8058639634e4, type: 3}
   m_Name: Ceiling
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7919106082983890748, guid: 7619e11cd0b89054f9410a55888fee2c, type: 3}
+  prefab: {fileID: 7919106082983890748, guid: 1328f086ebc92a049bf14faa7de91d5c, type: 3}
   position: {x: 0, y: 0, z: 0}
