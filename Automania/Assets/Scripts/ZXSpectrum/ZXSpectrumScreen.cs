@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -25,6 +26,8 @@ public class ZXSpectrumScreen : MonoBehaviour
     }
 
     #endregion
+
+    private Color White = new Color(221, 221, 221);
 
     private Material matInstance;
     private Texture2D inkInstance;
@@ -62,6 +65,9 @@ public class ZXSpectrumScreen : MonoBehaviour
     {
         Color[] inkColours = new Color[32 * 24];
         Color[] paperColours = new Color[32 * 24];
+
+        Array.Fill(inkColours, White);
+        Array.Fill(paperColours, Color.black);
 
         var objs = objects.OrderBy(o => o.drawOrder);
 

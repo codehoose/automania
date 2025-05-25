@@ -34,9 +34,9 @@ public class FanTemp : MonoBehaviour
             sx *= -1;
         }
 
-        if (pos.y <= -191 - 16)
+        if (pos.y < -166)
         {
-            pos.y = -191 - 16;
+            pos.y = -166;
             sy *= -1;
         }
 
