@@ -1,0 +1,188 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "workshop1.tmx",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "8x8blocks.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        },
+        "D:/Repos/Projects/Adventure/Adventure/Tiled/castle.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 156.75,
+                "y": 29.5
+            }
+        },
+        "D:/Repos/Projects/Adventure/Adventure/Tiled/maze-bottom-column.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 156.75,
+                "y": 29.5
+            }
+        },
+        "D:/Repos/Projects/Adventure/Adventure/Tiled/maze-entry.tmx": {
+            "scale": 2.8537109375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.0788447060434,
+                "y": 96.36575183081241
+            }
+        },
+        "D:/Repos/Projects/Adventure/Adventure/Tiled/tilemap_packed.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "D:/Repos/Projects/ldjam48/TMX/overworld-1.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128,
+                "y": 71.75
+            }
+        },
+        "D:/Repos/Projects/ldjam48/TMX/overworld.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/blocks.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/garden01.tmx": {
+            "scale": 2.9166158536585365,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 156.1741493754247,
+                "y": 84.00146344012963
+            }
+        },
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/garden02.tmx": {
+            "scale": 2.9166158536585365,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160.11707521036953,
+                "y": 83.83003188208855
+            }
+        },
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/garden03.tmx": {
+            "scale": 4.816615853658536,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 156.02240719055604,
+                "y": 84.08393201886254
+            }
+        },
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/garden04.tmx": {
+            "scale": 4.816615853658536,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 158.72139760103806,
+                "y": 84.08393201886254
+            }
+        },
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/mowing-game.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160,
+                "y": 83.83333333333333
+            }
+        },
+        "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap/bin/Debug/map1.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 251,
+                "y": 243.5
+            }
+        },
+        "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap/map1.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 480,
+                "y": 768
+            }
+        },
+        "D:/Repos/Projects/new-rally-x-unity/MakeMap/new-rally-x/Tiled/map-blocks.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Repos/Projects/new-rally-x/Tiled/map-blocks.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 8
+        },
+        "D:/Repos/Projects/new-rally-x/Tiled/map1.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 479.75,
+                "y": 767.5
+            }
+        },
+        "D:/Repos/Projects/simple-shooter/TMX/Shooter Tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Repos/Projects/simple-shooter/TMX/sample-map.tmx": {
+            "scale": 1.4777777777777776,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 16.24060150375942,
+                "y": 288.27067669172936
+            }
+        },
+        "workshop1.tmx": {
+            "scale": 4.239015151515151,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 127.85988740952553,
+                "y": 91.29479045661692
+            }
+        },
+        "zxspectrum-palette.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap",
+    "last.imagePath": "D:/Repos/Projects/automania/tiled",
+    "map.height": 22,
+    "map.lastUsedExportFilter": "JSON map files (*.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 32,
+    "openFiles": [
+        "workshop1.tmx"
+    ],
+    "project": "automania.tiled-project",
+    "property.type": "int",
+    "recentFiles": [
+        "workshop1.tmx",
+        "8x8blocks.tsx",
+        "zxspectrum-palette.tsx",
+        "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap/map1.tmx",
+        "D:/Repos/Projects/new-rally-x/Tiled/map1.tmx",
+        "D:/Repos/Projects/new-rally-x/Tiled/map-blocks.tsx",
+        "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap/bin/Debug/map1.tmx",
+        "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap/template.tmx",
+        "D:/Repos/Projects/simple-shooter/TMX/Shooter Tiles.tsx",
+        "D:/Repos/Projects/simple-shooter/TMX/sample-map.tmx",
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/mowing-game.tmx",
+        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/blocks.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    }
+}
