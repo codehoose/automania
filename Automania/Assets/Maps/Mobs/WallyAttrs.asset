@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f4b99c34e62ac741867f8728f2113b5, type: 3}
-  m_Name: Level1
+  m_Script: {fileID: 11500000, guid: 766574488a5cbbd40804d61bda23deae, type: 3}
+  m_Name: WallyAttrs
   m_EditorClassIdentifier: 
-  hoistMapScreen: {fileID: 11400000, guid: 889b35e137f684d4b8e8d9225449dd05, type: 2}
-  workshopMapScreen: {fileID: 11400000, guid: 11ad010e7e445384e969263114e6bea9, type: 2}
+  position: {x: 0, y: 0}
+  size: {x: 2, y: 4}
+  ink: {r: 0.8, g: 0.8666667, b: 0.13333334, a: 1}
+  paper: {r: 0, g: 0, b: 0, a: 0}

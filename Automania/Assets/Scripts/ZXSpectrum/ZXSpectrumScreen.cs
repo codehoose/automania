@@ -61,6 +61,11 @@ public class ZXSpectrumScreen : MonoBehaviour
         objects.AddRange(newObjects);
     }
 
+    public void RemoveAll()
+    {
+        objects.Clear();
+    }
+
     private void Update()
     {
         Color[] inkColours = new Color[32 * 24];
@@ -73,8 +78,8 @@ public class ZXSpectrumScreen : MonoBehaviour
 
         foreach (var obj in objs)
         {
-            int x = Mathf.FloorToInt(obj.transform.position.x / 8);
-            int y = 23 - Mathf.Abs(Mathf.FloorToInt(obj.transform.position.y / 8));
+            int x = Mathf.CeilToInt(obj.transform.position.x / 8);
+            int y = 23 - Mathf.Abs(Mathf.CeilToInt(obj.transform.position.y / 8));
 
             foreach (var run in obj.attrs)
             {
@@ -86,6 +91,10 @@ public class ZXSpectrumScreen : MonoBehaviour
                     for (int xo = 0; xo < run.size.x; xo++)
                     {
                         int index = (yy - yo) * 32 + xx + xo;
+                        if (index< 0 || index>= 768)
+                        {
+                            throw new ArgumentOutOfRangeException($"{index} is invalid value");
+                        }
                         inkColours[index] = run.ink;
                         paperColours[index] = run.paper;
                     }

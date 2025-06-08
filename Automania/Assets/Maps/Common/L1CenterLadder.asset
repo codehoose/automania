@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f4b99c34e62ac741867f8728f2113b5, type: 3}
-  m_Name: Level1
+  m_Script: {fileID: 11500000, guid: 2fbfdb2a6696b7f418ed8058639634e4, type: 3}
+  m_Name: L1CenterLadder
   m_EditorClassIdentifier: 
-  hoistMapScreen: {fileID: 11400000, guid: 889b35e137f684d4b8e8d9225449dd05, type: 2}
-  workshopMapScreen: {fileID: 11400000, guid: 11ad010e7e445384e969263114e6bea9, type: 2}
+  prefab: {fileID: 2503382601402603510, guid: 47de1f9ab36dd894d94394cfe693bf19, type: 3}
+  position: {x: 128, y: -72, z: 0}

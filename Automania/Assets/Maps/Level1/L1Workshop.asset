@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0d0a56e6998f44a9e2c3ae6c096a99, type: 3}
   m_Name: L1Workshop
   m_EditorClassIdentifier: 
-  commonElements: []
+  commonElements:
+  - {fileID: 11400000, guid: e3cf768bb8838844abb36b2f7c5727cd, type: 2}
+  - {fileID: 11400000, guid: fef904511e328924dbed073001247795, type: 2}
+  - {fileID: 11400000, guid: 83b073847e87d804b8d6a32a9fe47509, type: 2}
+  - {fileID: 11400000, guid: 1534543f8aca13346a3e99afc24f64c2, type: 2}
   objects: []
