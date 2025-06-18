@@ -79,9 +79,9 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -153,7 +153,7 @@ TextureImporter:
       name: 8x8blocks_2
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 88
         width: 8
         height: 8
@@ -175,8 +175,8 @@ TextureImporter:
       name: 8x8blocks_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 24
+        y: 88
         width: 8
         height: 8
       alignment: 1
@@ -197,7 +197,7 @@ TextureImporter:
       name: 8x8blocks_4
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 80
         width: 8
         height: 8
@@ -219,7 +219,7 @@ TextureImporter:
       name: 8x8blocks_5
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 80
         width: 8
         height: 8
@@ -241,7 +241,7 @@ TextureImporter:
       name: 8x8blocks_6
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 80
         width: 8
         height: 8
@@ -263,8 +263,8 @@ TextureImporter:
       name: 8x8blocks_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 72
+        x: 24
+        y: 80
         width: 8
         height: 8
       alignment: 1
@@ -285,7 +285,7 @@ TextureImporter:
       name: 8x8blocks_8
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 72
         width: 8
         height: 8
@@ -307,7 +307,7 @@ TextureImporter:
       name: 8x8blocks_9
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 72
         width: 8
         height: 8
@@ -329,7 +329,7 @@ TextureImporter:
       name: 8x8blocks_10
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 72
         width: 8
         height: 8
@@ -351,8 +351,8 @@ TextureImporter:
       name: 8x8blocks_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 24
+        y: 72
         width: 8
         height: 8
       alignment: 1
@@ -373,7 +373,7 @@ TextureImporter:
       name: 8x8blocks_12
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 64
         width: 8
         height: 8
@@ -395,7 +395,7 @@ TextureImporter:
       name: 8x8blocks_13
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 64
         width: 8
         height: 8
@@ -417,7 +417,7 @@ TextureImporter:
       name: 8x8blocks_14
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 64
         width: 8
         height: 8
@@ -439,8 +439,8 @@ TextureImporter:
       name: 8x8blocks_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 56
+        x: 24
+        y: 64
         width: 8
         height: 8
       alignment: 1
@@ -461,7 +461,7 @@ TextureImporter:
       name: 8x8blocks_16
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 56
         width: 8
         height: 8
@@ -483,7 +483,7 @@ TextureImporter:
       name: 8x8blocks_17
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 56
         width: 8
         height: 8
@@ -505,7 +505,7 @@ TextureImporter:
       name: 8x8blocks_18
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 56
         width: 8
         height: 8
@@ -527,8 +527,8 @@ TextureImporter:
       name: 8x8blocks_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 24
+        y: 56
         width: 8
         height: 8
       alignment: 1
@@ -549,7 +549,7 @@ TextureImporter:
       name: 8x8blocks_20
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 48
         width: 8
         height: 8
@@ -571,7 +571,7 @@ TextureImporter:
       name: 8x8blocks_21
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 48
         width: 8
         height: 8
@@ -593,7 +593,7 @@ TextureImporter:
       name: 8x8blocks_22
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 48
         width: 8
         height: 8
@@ -615,8 +615,8 @@ TextureImporter:
       name: 8x8blocks_23
       rect:
         serializedVersion: 2
-        x: 0
-        y: 40
+        x: 24
+        y: 48
         width: 8
         height: 8
       alignment: 1
@@ -637,7 +637,7 @@ TextureImporter:
       name: 8x8blocks_24
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 40
         width: 8
         height: 8
@@ -659,7 +659,7 @@ TextureImporter:
       name: 8x8blocks_25
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 40
         width: 8
         height: 8
@@ -681,7 +681,7 @@ TextureImporter:
       name: 8x8blocks_26
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 40
         width: 8
         height: 8
@@ -703,8 +703,8 @@ TextureImporter:
       name: 8x8blocks_27
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 24
+        y: 40
         width: 8
         height: 8
       alignment: 1
@@ -725,7 +725,7 @@ TextureImporter:
       name: 8x8blocks_28
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 32
         width: 8
         height: 8
@@ -747,7 +747,7 @@ TextureImporter:
       name: 8x8blocks_29
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 32
         width: 8
         height: 8
@@ -769,7 +769,7 @@ TextureImporter:
       name: 8x8blocks_30
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 32
         width: 8
         height: 8
@@ -791,8 +791,8 @@ TextureImporter:
       name: 8x8blocks_31
       rect:
         serializedVersion: 2
-        x: 0
-        y: 24
+        x: 24
+        y: 32
         width: 8
         height: 8
       alignment: 1
@@ -813,7 +813,7 @@ TextureImporter:
       name: 8x8blocks_32
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 24
         width: 8
         height: 8
@@ -835,7 +835,7 @@ TextureImporter:
       name: 8x8blocks_33
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 24
         width: 8
         height: 8
@@ -857,7 +857,7 @@ TextureImporter:
       name: 8x8blocks_34
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 24
         width: 8
         height: 8
@@ -879,8 +879,8 @@ TextureImporter:
       name: 8x8blocks_35
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
+        x: 24
+        y: 24
         width: 8
         height: 8
       alignment: 1
@@ -901,7 +901,7 @@ TextureImporter:
       name: 8x8blocks_36
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 16
         width: 8
         height: 8
@@ -923,7 +923,7 @@ TextureImporter:
       name: 8x8blocks_37
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 16
         width: 8
         height: 8
@@ -945,7 +945,7 @@ TextureImporter:
       name: 8x8blocks_38
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 16
         width: 8
         height: 8
@@ -967,8 +967,8 @@ TextureImporter:
       name: 8x8blocks_39
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
+        x: 24
+        y: 16
         width: 8
         height: 8
       alignment: 1
@@ -989,7 +989,7 @@ TextureImporter:
       name: 8x8blocks_40
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 8
         width: 8
         height: 8
@@ -1011,8 +1011,8 @@ TextureImporter:
       name: 8x8blocks_41
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 8
+        y: 8
         width: 8
         height: 8
       alignment: 1
@@ -1033,8 +1033,8 @@ TextureImporter:
       name: 8x8blocks_42
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
+        x: 16
+        y: 8
         width: 8
         height: 8
       alignment: 1
@@ -1047,6 +1047,116 @@ TextureImporter:
       bones: []
       spriteID: 7da1ae96d4c106a41bb27caa4f8f1b26
       internalID: 1056812455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8x8blocks_43
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 8
+        height: 8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551f88bc63b74f84fa143f9ccdc1b7dc
+      internalID: -2058148520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8x8blocks_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 8
+        height: 8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b60b942e15f09e41a197de660ba9222
+      internalID: -460456740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8x8blocks_45
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0ddeaf63660110408d5dc3793eec4c7
+      internalID: -828447762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8x8blocks_46
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a75fd56d15e5044fb4184412b9fe2a9
+      internalID: 1887766394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8x8blocks_47
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ac423f88a8d6148ace09c1cc7cef29
+      internalID: -558049329
       vertices: []
       indices: 
       edges: []
@@ -1103,6 +1213,11 @@ TextureImporter:
       8x8blocks_40: -443627523
       8x8blocks_41: 877752712
       8x8blocks_42: 1056812455
+      8x8blocks_43: -2058148520
+      8x8blocks_44: -460456740
+      8x8blocks_45: -828447762
+      8x8blocks_46: 1887766394
+      8x8blocks_47: -558049329
       8x8blocks_5: 730106952
       8x8blocks_6: -1325178687
       8x8blocks_7: -478928091

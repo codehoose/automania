@@ -773,14 +773,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415b76b6e9e5c3644809019e9f587f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levels:
-  - {fileID: 11400000, guid: 63c7e81c6d1279649978c53d7f2753f9, type: 2}
   currentLevel: 0
   inWarehouse: 1
   hoistRoomRoot: {fileID: 91446655}
   hoistRoomWallyStart: {x: 232, y: -152, z: 0}
   warehouseWallyStart: {x: 16, y: -152, z: 0}
+  blockSprites:
+  - {fileID: 8136577010925380142, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -661305720569814766, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -8637938450959199129, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 221834865, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1315240179, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 730106952, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -1325178687, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -478928091, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -1607912014, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 498208010, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -946964692, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1727086354, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -1048905034, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1371920812, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1911097943, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -451005645, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1244191157, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -829606459, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 636374069, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1573387489, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 2026363238, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -581226170, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 43147512, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 411952243, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1984009986, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -357723396, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 2033390119, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1883079560, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1893002084, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -372641372, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -1680495645, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 54772877, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1000049344, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -429614914, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -1334966050, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -1743487929, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 2129037121, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -650331224, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1274307942, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1339233025, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -443627523, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 877752712, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1056812455, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -2058148520, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -460456740, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -828447762, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: 1887766394, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  - {fileID: -558049329, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
+  blockPrefab: {fileID: 2466568146730122977, guid: 8b417b0ca25847946bcdc304335f0e47, type: 3}
   wallyMob: {fileID: 2045392742458599322, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
+  zxSpectrumColours: {fileID: 2800000, guid: 6017287ad197d36479bd9de60b02b9a3, type: 3}
+  mapFiles:
+  - {fileID: 4900000, guid: cadd2af297ba96342b6f81ef942ce873, type: 3}
 --- !u!4 &1746175354
 Transform:
   m_ObjectHideFlags: 0
