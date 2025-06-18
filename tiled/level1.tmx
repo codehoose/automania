@@ -5,7 +5,7 @@
  </editorsettings>
  <tileset firstgid="1" source="8x8blocks.tsx"/>
  <tileset firstgid="97" source="zxspectrum-palette.tsx"/>
- <group id="5" name="Workshop">
+ <group id="5" name="Workshop" visible="0">
   <layer id="2" name="Paper" width="32" height="22">
    <data encoding="csv">
 97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,
@@ -146,7 +146,7 @@
    </object>
   </objectgroup>
  </group>
- <group id="6" name="Hoist" visible="0">
+ <group id="6" name="Hoist">
   <layer id="9" name="Paper" width="32" height="22">
    <data encoding="csv">
 97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,
