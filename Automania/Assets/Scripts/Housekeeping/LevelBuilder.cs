@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
 {
     private Color[] palette;
     private List<ZXObject> zxObjects;
+    private List<Conveyor> conveyors;
     private List<GameObject> mobs;
     private TiledMapFile tiledMap;
 
@@ -16,14 +18,18 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] private Sprite[] blockSprites;
     [SerializeField] private ZXObject blockPrefab;
     [SerializeField] private GameObject wallyMob;
+    [SerializeField] private Conveyor conveyorPrefab;
     [SerializeField] private Texture2D zxSpectrumColours;
     [SerializeField] private TextAsset[] mapFiles;
+    [SerializeField] private ConveyorBlockStapes leftToRight;
+    [SerializeField] private ConveyorBlockStapes rightToLeft;
 
     public List<ZXObject> ZXObjects => zxObjects;
 
     private void Start()
     {
         zxObjects = new();
+        conveyors = new();
         palette = new Color[8];
         mobs = new();
         tiledMap = TiledMapDeserializer.Load(mapFiles[currentLevel]);
@@ -57,6 +63,12 @@ public class LevelBuilder : MonoBehaviour
         }
         mobs.Clear();
 
+        foreach (var c in conveyors)
+        {
+            Destroy(c.gameObject);
+        }
+        conveyors.Clear();
+
         var tiledMapGroup = inWarehouse ? tiledMap.GetWorkshop() : tiledMap.GetHoist();
         var inkGroup = tiledMapGroup.GetInk().data;
         var paperGroup = tiledMapGroup.GetPaper().data;
@@ -78,6 +90,32 @@ public class LevelBuilder : MonoBehaviour
                 zxObjects.Add(zxObject);
             }
         }
+
+        var conveyorPositions = tiledMapGroup.GetConveyors();
+        if (conveyorPositions != null)
+        {
+            foreach (var c in conveyorPositions)
+            {
+                var dir = 1;
+                var direction = c.properties.FirstOrDefault(p => p.name == "dir");
+                if (direction != null)
+                {
+                    dir = (int)direction.value;
+                }
+
+                var startx = dir > 0 ? c.x : c.x + c.width - 8;
+                var sprites = dir > 0 ? leftToRight : rightToLeft;
+
+                var newConveyor = Instantiate(conveyorPrefab, new Vector3(startx, -c.y - 16, 0), Quaternion.identity);
+                newConveyor.Init(dir, c.width / 8, sprites.blocks);
+                conveyors.Add(newConveyor);
+            }
+        }
+
+
+
+
+
 
         //var wallyStart = inWarehouse ? warehouseWallyStart : hoistRoomWallyStart;
         //mobs.Add(Instantiate(wallyMob, wallyStart, Quaternion.identity));

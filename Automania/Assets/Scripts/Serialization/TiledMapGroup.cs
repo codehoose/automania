@@ -12,4 +12,6 @@ public class TiledMapGroup
     public TiledMapLayer GetPaper() => layers.FirstOrDefault(layer => layer.name == "Paper");
 
     public TiledMapLayer GetBlocks() => layers.FirstOrDefault(layer => layer.name == "Blocks");
+
+    public TileMapObject[] GetConveyors() => layers.FirstOrDefault(layer => layer.name == "Conveyors")?.objects;
 }

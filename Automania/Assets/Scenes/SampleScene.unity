@@ -829,9 +829,12 @@ MonoBehaviour:
   - {fileID: -558049329, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
   blockPrefab: {fileID: 2466568146730122977, guid: 8b417b0ca25847946bcdc304335f0e47, type: 3}
   wallyMob: {fileID: 2045392742458599322, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
+  conveyorPrefab: {fileID: 329849741272508955, guid: e9a0840f670e9bf44be01d2ba7812b5f, type: 3}
   zxSpectrumColours: {fileID: 2800000, guid: 6017287ad197d36479bd9de60b02b9a3, type: 3}
   mapFiles:
   - {fileID: 4900000, guid: cadd2af297ba96342b6f81ef942ce873, type: 3}
+  leftToRight: {fileID: 11400000, guid: f7e19c09cb0613c408cbf5446c2a1599, type: 2}
+  rightToLeft: {fileID: 11400000, guid: 3fa1f17958c089c4586de111a48cfee4, type: 2}
 --- !u!4 &1746175354
 Transform:
   m_ObjectHideFlags: 0
