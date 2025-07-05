@@ -54,7 +54,8 @@ public class Conveyor : MonoBehaviour
             {
                 var block = Instantiate(blockPrefab, transform.position + new Vector3(blocks.Count * 8 * direction, 0, 0), Quaternion.identity);
                 blocks.Add(block);
-                currentFrame = 0;
+                block.GetComponent<SpriteRenderer>().sprite = sprites[0];
+                currentFrame = 1;
             }
             else
             {

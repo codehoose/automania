@@ -140,6 +140,14 @@
                 "y": 288.27067669172936
             }
         },
+        "colourtest.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 112,
+                "y": 104
+            }
+        },
         "level1.tmx": {
             "scale": 4,
             "selectedLayer": 7,

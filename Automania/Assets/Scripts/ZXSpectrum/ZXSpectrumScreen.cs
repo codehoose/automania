@@ -39,6 +39,8 @@ public class ZXSpectrumScreen : MonoBehaviour
     [SerializeField] private Material material;
     [SerializeField] private Texture2D ink;
     [SerializeField] private Texture2D paper;
+    private Color[] staticInk;
+    private Color[] staticPaper;
 
     private void Awake()
     {
@@ -66,13 +68,29 @@ public class ZXSpectrumScreen : MonoBehaviour
         objects.Clear();
     }
 
+
+    public void SetStaticColours(Color[] inkColours, Color[] paperColours)
+    {
+        staticInk = inkColours;
+        staticPaper = paperColours;
+    }
+
     private void Update()
     {
         Color[] inkColours = new Color[32 * 24];
         Color[] paperColours = new Color[32 * 24];
 
         Array.Fill(inkColours, White);
+        if (staticInk != null)
+        {
+            Array.Copy(staticInk, 0, inkColours, 0, staticInk.Length);
+        }
+
         Array.Fill(paperColours, Color.black);
+        if (staticPaper != null)
+        {
+            Array.Copy(staticPaper, 0, paperColours, 0, staticPaper.Length);
+        }
 
         var objs = objects.OrderBy(o => o.drawOrder);
 
@@ -80,6 +98,8 @@ public class ZXSpectrumScreen : MonoBehaviour
         {
             int x = Mathf.CeilToInt(obj.transform.position.x / 8);
             int y = 23 - Mathf.Abs(Mathf.CeilToInt(obj.transform.position.y / 8));
+
+            if (obj.attrs == null) continue;
 
             foreach (var run in obj.attrs)
             {

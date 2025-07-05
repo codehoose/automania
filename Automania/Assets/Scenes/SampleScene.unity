@@ -778,6 +778,9 @@ MonoBehaviour:
   hoistRoomRoot: {fileID: 91446655}
   hoistRoomWallyStart: {x: 232, y: -152, z: 0}
   warehouseWallyStart: {x: 16, y: -152, z: 0}
+  killObjects:
+  - {fileID: 4172736392335370764, guid: 688c2c4a2d858394c9dbb302019c5430, type: 3}
+  - {fileID: 4968947892624799253, guid: 0c49321bd7b4b6e49b08b65c0d61a214, type: 3}
   blockSprites:
   - {fileID: 8136577010925380142, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
   - {fileID: -661305720569814766, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
@@ -833,6 +836,7 @@ MonoBehaviour:
   zxSpectrumColours: {fileID: 2800000, guid: 6017287ad197d36479bd9de60b02b9a3, type: 3}
   mapFiles:
   - {fileID: 4900000, guid: cadd2af297ba96342b6f81ef942ce873, type: 3}
+  - {fileID: 4900000, guid: 158e4d4404a1f6249938352023bded1b, type: 3}
   leftToRight: {fileID: 11400000, guid: f7e19c09cb0613c408cbf5446c2a1599, type: 2}
   rightToLeft: {fileID: 11400000, guid: 3fa1f17958c089c4586de111a48cfee4, type: 2}
 --- !u!4 &1746175354
