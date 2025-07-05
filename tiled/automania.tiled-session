@@ -150,7 +150,7 @@
         },
         "level1.tmx": {
             "scale": 4,
-            "selectedLayer": 7,
+            "selectedLayer": 2,
             "viewCenter": {
                 "x": 128,
                 "y": 91
@@ -179,11 +179,13 @@
     "map.tileWidth": 8,
     "map.width": 32,
     "openFiles": [
+        "colourtest.tmx",
         "level1.tmx"
     ],
     "project": "automania.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "colourtest.tmx",
         "level1.tmx",
         "workshop1.tmx",
         "8x8blocks.tsx",
@@ -194,8 +196,7 @@
         "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap/bin/Debug/map1.tmx",
         "D:/Repos/Projects/new-rally-x-unity/MakeMap/MakeMap/template.tmx",
         "D:/Repos/Projects/simple-shooter/TMX/Shooter Tiles.tsx",
-        "D:/Repos/Projects/simple-shooter/TMX/sample-map.tmx",
-        "D:/Repos/Projects/ldjam51-every-10-seconds/TmxProject/mowing-game.tmx"
+        "D:/Repos/Projects/simple-shooter/TMX/sample-map.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
