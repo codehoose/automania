@@ -357,8 +357,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1576118722924126389}
-  - component: {fileID: 2572099091394874617}
   - component: {fileID: 517627751790397754}
+  - component: {fileID: 1518381892879088650}
   m_Layer: 0
   m_Name: DoorHandleOnLeft
   m_TagString: Door
@@ -386,21 +386,6 @@ Transform:
   - {fileID: 3040210287895851491}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2572099091394874617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7067686245847454318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113c1e106f8b55342aea7c4ba7d63359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attrs:
-  - {fileID: 11400000, guid: 08355f9a5e7f1cb4ba19892b3d0e052c, type: 2}
-  drawOrder: 0
 --- !u!61 &517627751790397754
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -447,6 +432,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 40}
   m_EdgeRadius: 0
+--- !u!114 &1518381892879088650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067686245847454318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1b028a10b3b2447a89bc23c710e4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leadsToWarehouse: 1
 --- !u!1 &8239726996080946571
 GameObject:
   m_ObjectHideFlags: 0

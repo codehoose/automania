@@ -774,13 +774,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
-  inWarehouse: 1
+  inWarehouse: 0
   hoistRoomRoot: {fileID: 91446655}
   hoistRoomWallyStart: {x: 232, y: -152, z: 0}
   warehouseWallyStart: {x: 16, y: -152, z: 0}
+  mapFiles:
+  - {fileID: 4900000, guid: cadd2af297ba96342b6f81ef942ce873, type: 3}
+  - {fileID: 4900000, guid: 158e4d4404a1f6249938352023bded1b, type: 3}
+  wallyMob: {fileID: 2045392742458599322, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
+  conveyorPrefab: {fileID: 329849741272508955, guid: e9a0840f670e9bf44be01d2ba7812b5f, type: 3}
+  ladderPrefab: {fileID: 868899759262820802, guid: b73abb76fed1f694fabeeb4ddc9246ce, type: 3}
+  blockPrefab: {fileID: 2466568146730122977, guid: 8b417b0ca25847946bcdc304335f0e47, type: 3}
   killObjects:
   - {fileID: 4172736392335370764, guid: 688c2c4a2d858394c9dbb302019c5430, type: 3}
   - {fileID: 4968947892624799253, guid: 0c49321bd7b4b6e49b08b65c0d61a214, type: 3}
+  doorPrefabs:
+  - {fileID: 3912705055961280711, guid: 36b5ba5d02bebf44aa19b135fc1b9132, type: 3}
+  - {fileID: 1518381892879088650, guid: 4e7f7e7ed7350f546b59f468414bdfcd, type: 3}
+  enemyPrefabs:
+  - {fileID: 6894395079437240371, guid: 0f00a2e6389aadc44a7f8f46b1d4cf10, type: 3}
+  - {fileID: 6926185557728758612, guid: 9d68a289592dba146bb522f64e0d1aa2, type: 3}
+  zxSpectrumColours: {fileID: 2800000, guid: 6017287ad197d36479bd9de60b02b9a3, type: 3}
   blockSprites:
   - {fileID: 8136577010925380142, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
   - {fileID: -661305720569814766, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
@@ -830,13 +844,6 @@ MonoBehaviour:
   - {fileID: -828447762, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
   - {fileID: 1887766394, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
   - {fileID: -558049329, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
-  blockPrefab: {fileID: 2466568146730122977, guid: 8b417b0ca25847946bcdc304335f0e47, type: 3}
-  wallyMob: {fileID: 2045392742458599322, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
-  conveyorPrefab: {fileID: 329849741272508955, guid: e9a0840f670e9bf44be01d2ba7812b5f, type: 3}
-  zxSpectrumColours: {fileID: 2800000, guid: 6017287ad197d36479bd9de60b02b9a3, type: 3}
-  mapFiles:
-  - {fileID: 4900000, guid: cadd2af297ba96342b6f81ef942ce873, type: 3}
-  - {fileID: 4900000, guid: 158e4d4404a1f6249938352023bded1b, type: 3}
   leftToRight: {fileID: 11400000, guid: f7e19c09cb0613c408cbf5446c2a1599, type: 2}
   rightToLeft: {fileID: 11400000, guid: 3fa1f17958c089c4586de111a48cfee4, type: 2}
 --- !u!4 &1746175354

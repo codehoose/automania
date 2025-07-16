@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="8" tileheight="8" infinite="0" nextlayerid="16" nextobjectid="21">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="8" tileheight="8" infinite="0" nextlayerid="20" nextobjectid="32">
  <editorsettings>
   <export target="../Automania/Assets/Maps/level1.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="8x8blocks.tsx"/>
  <tileset firstgid="49" source="zxspectrum-palette.tsx"/>
- <group id="5" name="Workshop" visible="0">
+ <group id="5" name="Workshop">
   <layer id="2" name="Paper" width="32" height="22">
    <data encoding="csv">
 49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,
@@ -76,14 +76,35 @@
 0,53,53,0,0,0,0,0,0,0,0,0,0,52,52,55,55,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,
 56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56
 </data>
   </layer>
+  <objectgroup id="19" name="Doors">
+   <object id="31" name="Door" x="0" y="128" width="8" height="40"/>
+  </objectgroup>
+  <objectgroup id="16" name="Enemies">
+   <object id="21" name="Wheel" x="120" y="152" width="16" height="16">
+    <properties>
+     <property name="dir" type="int" value="-1"/>
+    </properties>
+   </object>
+   <object id="22" name="Wheel" x="120" y="152" width="16" height="16">
+    <properties>
+     <property name="dir" type="int" value="1"/>
+    </properties>
+   </object>
+   <object id="24" name="Computer" x="240" y="152" width="16" height="16">
+    <properties>
+     <property name="dir" type="int" value="-1"/>
+     <property name="wait" type="int" value="5"/>
+    </properties>
+   </object>
+  </objectgroup>
   <objectgroup id="14" name="Ladders">
    <object id="10" name="LadderMiddle" type="Ladder" x="120" y="80" width="16" height="88">
     <properties>
@@ -146,7 +167,7 @@
    </object>
   </objectgroup>
  </group>
- <group id="6" name="Hoist">
+ <group id="6" name="Hoist" visible="0">
   <layer id="9" name="Paper" width="32" height="22">
    <data encoding="csv">
 49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,
@@ -217,14 +238,35 @@
 56,56,56,56,56,56,56,56,56,55,55,56,56,56,56,56,56,56,56,56,56,55,55,56,56,56,56,56,56,56,56,56,
 56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,
 56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,
-56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,
-56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,
-56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,
-56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,
-56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,
+56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,54,
+56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,54,
+56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,54,
+56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,54,
+56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,56,56,53,53,56,56,56,56,56,56,56,56,54,
 56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56
 </data>
   </layer>
+  <objectgroup id="18" name="Doors">
+   <object id="30" name="Door" x="248" y="128" width="8" height="40"/>
+  </objectgroup>
+  <objectgroup id="17" name="Enemies">
+   <object id="25" name="Computer" x="0" y="152" width="16" height="16">
+    <properties>
+     <property name="dir" type="int" value="1"/>
+     <property name="wait" type="int" value="5"/>
+    </properties>
+   </object>
+   <object id="27" name="Wheel" x="120" y="152" width="16" height="16">
+    <properties>
+     <property name="dir" type="int" value="-1"/>
+    </properties>
+   </object>
+   <object id="28" name="Wheel" x="120" y="152" width="16" height="16">
+    <properties>
+     <property name="dir" type="int" value="1"/>
+    </properties>
+   </object>
+  </objectgroup>
   <objectgroup id="12" name="Ladders">
    <object id="8" name="LadderLeft" type="Ladder" x="72" y="80" width="16" height="88">
     <properties>

@@ -58,16 +58,10 @@ public class ZXSpectrumScreen : MonoBehaviour
         objects.Add(zxo);
     }
 
-    public void AddObjects(IEnumerable<ZXObject> newObjects)
-    {
-        objects.AddRange(newObjects);
-    }
-
     public void RemoveAll()
     {
         objects.Clear();
     }
-
 
     public void SetStaticColours(Color[] inkColours, Color[] paperColours)
     {
