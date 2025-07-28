@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="8" tileheight="8" infinite="0" nextlayerid="20" nextobjectid="32">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="8" tileheight="8" infinite="0" nextlayerid="24" nextobjectid="41">
  <editorsettings>
   <export target="../Automania/Assets/Maps/level1.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="8x8blocks.tsx"/>
  <tileset firstgid="49" source="zxspectrum-palette.tsx"/>
- <group id="5" name="Workshop">
+ <group id="5" name="Workshop" visible="0">
   <layer id="2" name="Paper" width="32" height="22">
    <data encoding="csv">
 49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,
@@ -65,8 +65,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,55,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,55,0,
 0,55,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,55,0,
-0,55,55,0,0,52,52,0,0,0,0,0,0,0,0,51,51,0,0,0,0,0,0,0,0,52,52,0,0,55,55,0,
-0,55,55,0,0,56,56,0,0,0,0,0,0,0,0,51,51,0,0,0,0,0,0,0,0,56,56,0,0,55,55,0,
+0,55,55,0,52,52,49,0,0,0,0,0,0,0,0,51,51,0,0,0,0,0,0,0,52,52,49,0,0,55,55,0,
+0,55,55,0,56,56,49,0,0,0,0,0,0,0,0,51,51,0,0,0,0,0,0,0,56,56,49,0,0,55,55,0,
 56,53,53,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,53,53,56,
 0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,
 0,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,0,
@@ -84,6 +84,41 @@
 56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56
 </data>
   </layer>
+  <objectgroup id="22" name="Player">
+   <object id="39" name="Start" x="24" y="168" width="1" height="1"/>
+  </objectgroup>
+  <objectgroup id="20" name="Collectables">
+   <object id="32" name="Collectable" x="136" y="24" width="16" height="16">
+    <properties>
+     <property name="obj" type="int" value="4"/>
+    </properties>
+   </object>
+   <object id="33" name="Collectable" x="48" y="24" width="16" height="16">
+    <properties>
+     <property name="obj" type="int" value="2"/>
+    </properties>
+   </object>
+   <object id="34" name="Collectable" x="104" y="24" width="16" height="16">
+    <properties>
+     <property name="obj" type="int" value="3"/>
+    </properties>
+   </object>
+   <object id="35" name="Collectable" x="208" y="24" width="16" height="16">
+    <properties>
+     <property name="obj" type="int" value="5"/>
+    </properties>
+   </object>
+   <object id="36" name="Collectable" x="40" y="80" width="16" height="16">
+    <properties>
+     <property name="obj" type="int" value="0"/>
+    </properties>
+   </object>
+   <object id="37" name="Collectable" x="192" y="80" width="16" height="16">
+    <properties>
+     <property name="obj" type="int" value="1"/>
+    </properties>
+   </object>
+  </objectgroup>
   <objectgroup id="19" name="Doors">
    <object id="31" name="Door" x="0" y="128" width="8" height="40"/>
   </objectgroup>
@@ -150,7 +185,7 @@
      <property name="KillObject" type="int" value="1"/>
     </properties>
    </object>
-   <object id="15" name="Kill2" type="Killer" x="200" y="40" width="16" height="16">
+   <object id="15" name="Kill2" type="Killer" x="192" y="40" width="16" height="16">
     <properties>
      <property name="KillObject" type="int" value="0"/>
     </properties>
@@ -160,14 +195,14 @@
      <property name="KillObject" type="int" value="1"/>
     </properties>
    </object>
-   <object id="17" name="Kill4" type="Killer" x="40" y="40" width="16" height="16">
+   <object id="17" name="Kill4" type="Killer" x="32" y="40" width="16" height="16">
     <properties>
      <property name="KillObject" type="int" value="0"/>
     </properties>
    </object>
   </objectgroup>
  </group>
- <group id="6" name="Hoist" visible="0">
+ <group id="6" name="Hoist">
   <layer id="9" name="Paper" width="32" height="22">
    <data encoding="csv">
 49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,
@@ -246,6 +281,9 @@
 56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56
 </data>
   </layer>
+  <objectgroup id="23" name="Player">
+   <object id="40" name="Start" x="232" y="168" width="1" height="1"/>
+  </objectgroup>
   <objectgroup id="18" name="Doors">
    <object id="30" name="Door" x="248" y="128" width="8" height="40"/>
   </objectgroup>

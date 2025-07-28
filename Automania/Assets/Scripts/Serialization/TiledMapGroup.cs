@@ -21,5 +21,9 @@ public class TiledMapGroup
 
     public TileMapObject[] GetEnemies() => layers.FirstOrDefault(layer => layer.name == "Enemies")?.objects;
 
+    public TileMapObject[] GetCollectables() => layers.FirstOrDefault(layer => layer.name == "Collectables")?.objects;
+
     public TileMapObject GetDoor() => layers.FirstOrDefault(layer => layer.name == "Doors")?.objects[0];
+
+    public TileMapObject GetPlayerStart() => layers.FirstOrDefault(layer => layer.name == "Player")?.objects[0];
 }

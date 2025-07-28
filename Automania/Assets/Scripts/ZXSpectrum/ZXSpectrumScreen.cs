@@ -88,33 +88,33 @@ public class ZXSpectrumScreen : MonoBehaviour
 
         var objs = objects.OrderBy(o => o.drawOrder);
 
-        foreach (var obj in objs)
-        {
-            int x = Mathf.CeilToInt(obj.transform.position.x / 8);
-            int y = 23 - Mathf.Abs(Mathf.CeilToInt(obj.transform.position.y / 8));
+        //foreach (var obj in objs)
+        //{
+        //    int x = Mathf.CeilToInt(obj.transform.position.x / 8);
+        //    int y = 23 - Mathf.Abs(Mathf.CeilToInt(obj.transform.position.y / 8));
 
-            if (obj.attrs == null) continue;
+        //    if (obj.attrs == null) continue;
 
-            foreach (var run in obj.attrs)
-            {
-                int xx = (int)(x + run.position.x);
-                int yy = (int)(y - run.position.y);
+        //    foreach (var run in obj.attrs)
+        //    {
+        //        int xx = (int)(x + run.position.x);
+        //        int yy = (int)(y - run.position.y);
 
-                for (int yo = 0; yo < run.size.y; yo++)
-                {
-                    for (int xo = 0; xo < run.size.x; xo++)
-                    {
-                        int index = (yy - yo) * 32 + xx + xo;
-                        if (index< 0 || index>= 768)
-                        {
-                            throw new ArgumentOutOfRangeException($"{index} is invalid value");
-                        }
-                        inkColours[index] = run.ink;
-                        paperColours[index] = run.paper;
-                    }
-                }
-            }
-        }
+        //        for (int yo = 0; yo < run.size.y; yo++)
+        //        {
+        //            for (int xo = 0; xo < run.size.x; xo++)
+        //            {
+        //                int index = (yy - yo) * 32 + xx + xo;
+        //                if (index < 0 || index >= 768)
+        //                {
+        //                    throw new ArgumentOutOfRangeException($"{index} is invalid value");
+        //                }
+        //                inkColours[index] = run.ink;
+        //                paperColours[index] = run.paper;
+        //            }
+        //        }
+        //    }
+        //}
 
         inkInstance.SetPixels(inkColours);
         paperInstance.SetPixels(paperColours);

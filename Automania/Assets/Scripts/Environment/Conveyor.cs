@@ -14,13 +14,22 @@ public class Conveyor : MonoBehaviour
     private float cooldown = 0f;
     private float pauseTime = 0f;
 
-    List<Object> blocks;
+    List<GameObject> blocks;
 
     [SerializeField] private GameObject blockPrefab;
 
     private void Awake()
     {
         blocks = new();
+    }
+
+    private void OnDestroy()
+    {
+        foreach (GameObject obj in blocks)
+        {
+            Destroy(obj);
+        }
+        blocks.Clear();
     }
 
     public void Init(int direction, int blockCount, Sprite[] sprites)

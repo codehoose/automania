@@ -774,14 +774,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
-  inWarehouse: 0
+  inWarehouse: 1
   hoistRoomRoot: {fileID: 91446655}
-  hoistRoomWallyStart: {x: 232, y: -152, z: 0}
-  warehouseWallyStart: {x: 16, y: -152, z: 0}
   mapFiles:
   - {fileID: 4900000, guid: cadd2af297ba96342b6f81ef942ce873, type: 3}
   - {fileID: 4900000, guid: 158e4d4404a1f6249938352023bded1b, type: 3}
-  wallyMob: {fileID: 2045392742458599322, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
+  collectablesList:
+  - {fileID: 11400000, guid: 76837b2b77d05484bbdc1bea091f6fad, type: 2}
+  wallyMob: {fileID: 7714681936301489481, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
   conveyorPrefab: {fileID: 329849741272508955, guid: e9a0840f670e9bf44be01d2ba7812b5f, type: 3}
   ladderPrefab: {fileID: 868899759262820802, guid: b73abb76fed1f694fabeeb4ddc9246ce, type: 3}
   blockPrefab: {fileID: 2466568146730122977, guid: 8b417b0ca25847946bcdc304335f0e47, type: 3}
@@ -794,6 +794,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6894395079437240371, guid: 0f00a2e6389aadc44a7f8f46b1d4cf10, type: 3}
   - {fileID: 6926185557728758612, guid: 9d68a289592dba146bb522f64e0d1aa2, type: 3}
+  collectablePrefab: {fileID: 1772094289440942386, guid: ba9d850567b614c4788ad2d6a808b76e, type: 3}
   zxSpectrumColours: {fileID: 2800000, guid: 6017287ad197d36479bd9de60b02b9a3, type: 3}
   blockSprites:
   - {fileID: 8136577010925380142, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
