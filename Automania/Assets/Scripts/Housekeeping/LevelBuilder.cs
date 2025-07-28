@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
@@ -120,12 +121,12 @@ public class LevelBuilder : MonoBehaviour
         if (wallyInstance)
             objects.Add(new TempAttr()
             {
-                x = wallyInstance.transform.position.x,
+                x = wallyInstance.transform.position.x - WallyWidth / 2,
                 y = wallyInstance.transform.position.y + WallyHeight,
                 dir = wallyInstance.GetComponent<SpriteRenderer>().flipX ? -1 : 1,
                 height = WallyHeight / CellSizePixels,
                 width = WallyWidth / CellSizePixels,
-                centerOffset = CellSizePixels / 2
+                centerOffset = WallyWidth / 2
             });
 
         foreach (var obj in objects)
@@ -336,4 +337,23 @@ public class LevelBuilder : MonoBehaviour
         foreach (var c in components) Destroy(c.gameObject);
         components.Clear();
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    if (!wallyInstance) return;
+
+    //    var x = wallyInstance.transform.position.x - WallyWidth / 2;
+    //    var y = wallyInstance.transform.position.y + WallyHeight;
+    //    var dir = wallyInstance.GetComponent<SpriteRenderer>().flipX ? -1 : 1;
+    //    var height = WallyHeight / CellSizePixels;
+    //    var width = WallyWidth / CellSizePixels;
+    //    var centerOffset = CellSizePixels / 2;
+
+    //    Gizmos.color = Color.magenta;
+
+    //    Gizmos.DrawLine(new Vector3(x, y), new Vector3(x + WallyWidth, y));
+    //    Gizmos.DrawLine(new Vector3(x + WallyWidth, y), new Vector3(x + WallyWidth, y -WallyHeight));
+    //    Gizmos.DrawLine(new Vector3(x + WallyWidth, y - WallyHeight), new Vector3(x, y - WallyHeight));
+    //    Gizmos.DrawLine(new Vector3(x, y - WallyHeight), new Vector3(x,y));
+    //}
 }
