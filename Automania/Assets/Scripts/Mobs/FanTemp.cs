@@ -7,10 +7,6 @@ public class FanTemp : MonoBehaviour
     public float sx = 32;
     public float sy = 32;
 
-    void Start()
-    {
-        ZXSpectrumScreen.Instance.AddObject(GetComponent<ZXObject>());
-    }
 
     private void Update()
     {

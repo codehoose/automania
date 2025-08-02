@@ -15,19 +15,20 @@ public class GameController : MonoBehaviour
     }
 
     private float cachedX;
+    private float cachedY;
     private InputAction moveAction;
     private InputAction jumpAction;
 
     [SerializeField] private LevelBuilder levelBuilder;
 
-    public UnityEvent<float> MovePlayer;
+    public UnityEvent<float, float> MovePlayer;
 
     public void ChangeRoom()
     {
         levelBuilder.ChangeRoom();
     }
 
-    public float RegisterWally(UnityAction<float> listener)
+    public float RegisterWally(UnityAction<float, float> listener)
     {
         MovePlayer.AddListener(listener);
         return cachedX;
@@ -58,12 +59,17 @@ public class GameController : MonoBehaviour
     private void MoveAction_canceled(InputAction.CallbackContext obj)
     {
         cachedX = 0;
-        MovePlayer?.Invoke(0f);
+        cachedY = 0;
+        MovePlayer?.Invoke(0f, 0f);
     }
 
     private void MoveAction_performed(InputAction.CallbackContext obj)
     {
-        cachedX = Mathf.Sign(obj.ReadValue<Vector2>().x);
-        MovePlayer?.Invoke(cachedX);
+        var x = obj.ReadValue<Vector2>().x;
+        var y = obj.ReadValue<Vector2>().y;
+
+        cachedX = x != 0 ? Mathf.Sign(x) : 0;
+        cachedY = y != 0 ? Mathf.Sign(y) : 0;
+        MovePlayer?.Invoke(cachedX, cachedY);
     }
 }

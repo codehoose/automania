@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class ZXMob : ZXObject
 {
     private float lastX;
+    private float lastY;
 
     protected Vector3 pos;
     public bool addOnStartup;
@@ -13,12 +14,8 @@ public class ZXMob : ZXObject
     public virtual void Start()
     {
         NextWalkFrame = new UnityEvent();
-
-        if (addOnStartup)
-        {
-            pos = transform.position;
-            ZXSpectrumScreen.Instance.AddObject(this);
-        }
+        pos = transform.position;
+        lastX = pos.x;
     }
 
     public virtual void FixedUpdate()
@@ -28,12 +25,17 @@ public class ZXMob : ZXObject
             lastX = (int)pos.x;
             NextWalkFrame?.Invoke();
         }
+        else if (Mathf.Abs((int)pos.y - (int)lastY) > 2)
+        {
+            lastY = (int)pos.y;
+            NextWalkFrame?.Invoke();
+        }
 
         transform.position = new Vector3((int)pos.x, (int)pos.y, 0);
     }
 
     protected void ResetAnimation()
     {
-        lastX = (int)pos.x;
+        lastX = (int)transform.position.x;
     }
 }

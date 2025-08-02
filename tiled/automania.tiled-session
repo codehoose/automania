@@ -150,10 +150,10 @@
         },
         "level1.tmx": {
             "scale": 4,
-            "selectedLayer": 13,
+            "selectedLayer": 14,
             "viewCenter": {
-                "x": 8,
-                "y": 160
+                "x": 114.75,
+                "y": 102.5
             }
         },
         "workshop1.tmx": {

@@ -18,10 +18,10 @@ public class LevelBuilder : MonoBehaviour
     }
 
     private static int ScreenTopOffset = -16;
-    private static int CellSizePixels = 8;
+    public static int CellSizePixels = 8;
     private static int PlayScreenColumnCount = 32;
     private static int PlayScreenRowCount = 22;
-    private static int WallyHeight = 32;
+    public static int WallyHeight = 32;
     private static int WallyWidth = 16;
 
     private bool describingRoom;
@@ -165,7 +165,6 @@ public class LevelBuilder : MonoBehaviour
     public void DescribeRoom()
     {
         describingRoom = true;
-        ZXSpectrumScreen.Instance.RemoveAll();
 
         ClearComponentList(enemies);
         ClearComponentList(conveyors);
