@@ -2,7 +2,16 @@
 
 public class WallyMob : ZXMob
 {
+    enum MovementState
+    {
+        Walking,
+        Climbing,
+        Jumping,
+        Falling
+    }
+
     private static float SpeedPixelsPerSecond = 32f;
+    private static float JumpSpeedPixelsPerSecond = 34f;
     private static float NearGroundFudgeFactorPixels = 2f;
 
     private SpriteRenderer spr;
@@ -12,13 +21,21 @@ public class WallyMob : ZXMob
     private float x;
     private float y;
     private int frame;
-    private bool isClimbing;
     private Sprite[] frames;
 
     private Ladder currentLadder;
+    private MovementState state;
 
+    [SerializeField] private Transform pickupRoot;
     [SerializeField] private Sprite[] walking;
     [SerializeField] private Sprite[] climbing;
+    private float jumpInitialY;
+    private float jumpTime;
+    private float jumpX;
+    private int jumpY;
+    private bool jumpFalling;
+
+    private bool Carrying => pickupRoot.childCount > 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,20 +52,43 @@ public class WallyMob : ZXMob
             if (ladder == null) return;
             currentLadder = ladder;
         }
+        else if (collision.tag == "HoistDropOff")
+        {
+            // TODO: Increment player score
+            DropCurrentObject();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Rung" && !isClimbing)
+        if (collision.tag == "Rung" && state != MovementState.Climbing)
         {
             currentLadder = null;
         }
+    }
+
+    public void PickupObject(int collectableIndex, Transform obj)
+    {
+        if (Carrying) return;
+        obj.SetParent(pickupRoot);
+        obj.localPosition = Vector2.left * 8; // move left 8 pixels
+        GameController.Instance.GameState.CurrentCollectable = collectableIndex;
+    }
+
+    public void DropCurrentObject()
+    {
+        if (!Carrying) return;
+
+        var child = pickupRoot.GetChild(0);
+        GameController.Instance.GameState.DropObject();
+        Destroy(child.gameObject);
     }
 
     public override void Start()
     {
         base.Start();
         frames = walking;
+        state = MovementState.Walking;
 
         NextWalkFrame.AddListener(() =>
         {
@@ -57,7 +97,7 @@ public class WallyMob : ZXMob
         });
 
         spr = GetComponent<SpriteRenderer>();
-        x = GameController.Instance.RegisterWally(Move_Changed);
+        x = GameController.Instance.RegisterWally(Move_Changed, Jump_Changed);
         spr.flipX = x < 0;
     }
 
@@ -66,20 +106,39 @@ public class WallyMob : ZXMob
         GameController.Instance?.MovePlayer.RemoveListener(Move_Changed);
     }
 
+    private void Jump_Changed()
+    {
+        if (state != MovementState.Walking) return;
+
+        jumpInitialY = pos.y;
+        jumpFalling = false;
+        jumpTime = 0f;
+        jumpX = x;
+        jumpY = 1;
+        state = MovementState.Jumping;
+    }
+
     private void Move_Changed(float newX, float newY)
     {
-        if (isClimbing)
+        if (state == MovementState.Jumping)
+        {
+            if (newX != jumpX) jumpX = newX;
+            
+            return;
+        }
+
+        if (state == MovementState.Climbing)
         {
             y = newY;
             x = newX;
         }
         else
         {
-            if (!isClimbing && newY != 0 && OverALadder())
+            if (newY != 0 && OverALadder())
             {
                 y = newY;
                 x = newX;
-                isClimbing = true;
+                state = MovementState.Climbing;
                 frames = climbing;
                 frame = 0;
                 pos.x = currentLadder.transform.position.x + LevelBuilder.CellSizePixels;
@@ -108,7 +167,7 @@ public class WallyMob : ZXMob
 
     public override void FixedUpdate()
     {
-        if (isClimbing)
+        if (state == MovementState.Climbing)
         {
             pos.y += y * SpeedPixelsPerSecond * Time.deltaTime;
 
@@ -130,7 +189,7 @@ public class WallyMob : ZXMob
             if (x != 0 && isNearTop)
             {
                 pos.y = currentLadder.transform.position.y - LevelBuilder.WallyHeight;
-                isClimbing = false;
+                state = MovementState.Walking;
                 frames = walking;
                 frame = 0;
                 spr.flipX = x < 0;
@@ -140,7 +199,7 @@ public class WallyMob : ZXMob
             else if (x != 0 && isNearBottom)
             {
                 pos.y = currentLadder.LowestY - LevelBuilder.CellSizePixels;
-                isClimbing = false;
+                state = MovementState.Walking;
                 frames = walking;
                 frame = 0;
                 spr.flipX = x < 0;
@@ -148,8 +207,26 @@ public class WallyMob : ZXMob
                 ResetAnimation();
             }
         }
+        else if (state == MovementState.Jumping)
+        {
+            pos.y += jumpY * JumpSpeedPixelsPerSecond * Time.deltaTime;
+            jumpTime += Time.deltaTime;
+            if (jumpTime >= 0.5f && !jumpFalling)
+            {
+                jumpFalling = true;
+                jumpY *= -1;
+            }
 
-        if (!isClimbing)
+            if (jumpTime >= 1f)
+            {
+                state = MovementState.Walking;
+                pos.y = jumpInitialY;
+                x = jumpX;
+                spr.flipX = x == 0 ? spr.flipX : x < 0;
+            }
+        }
+
+        if (state != MovementState.Climbing)
         {
             pos.x += x * SpeedPixelsPerSecond * Time.deltaTime;
         }

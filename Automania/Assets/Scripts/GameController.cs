@@ -16,26 +16,32 @@ public class GameController : MonoBehaviour
 
     private float cachedX;
     private float cachedY;
+    private GlobalGameState gameState;
     private InputAction moveAction;
     private InputAction jumpAction;
 
     [SerializeField] private LevelBuilder levelBuilder;
 
     public UnityEvent<float, float> MovePlayer;
+    public UnityEvent JumpPlayer;
+
+    public GlobalGameState GameState => gameState;
 
     public void ChangeRoom()
     {
         levelBuilder.ChangeRoom();
     }
 
-    public float RegisterWally(UnityAction<float, float> listener)
+    public float RegisterWally(UnityAction<float, float> listener, UnityAction jumpListener)
     {
         MovePlayer.AddListener(listener);
+        JumpPlayer.AddListener(jumpListener);
         return cachedX;
     }
 
     private void Awake()
     {
+        gameState = new GlobalGameState();
         instance = this;
     }
 
@@ -46,6 +52,13 @@ public class GameController : MonoBehaviour
 
         moveAction.performed += MoveAction_performed;
         moveAction.canceled += MoveAction_canceled;
+
+        jumpAction.performed += JumpAction_Performed;
+    }
+
+    private void JumpAction_Performed(InputAction.CallbackContext obj)
+    {
+        JumpPlayer?.Invoke();
     }
 
     private void OnDestroy()

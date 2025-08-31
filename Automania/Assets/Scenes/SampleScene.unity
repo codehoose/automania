@@ -785,6 +785,7 @@ MonoBehaviour:
   ladderPrefab: {fileID: 868899759262820802, guid: b73abb76fed1f694fabeeb4ddc9246ce, type: 3}
   blockPrefab: {fileID: 2466568146730122977, guid: 8b417b0ca25847946bcdc304335f0e47, type: 3}
   collectablePrefab: {fileID: 1772094289440942386, guid: ba9d850567b614c4788ad2d6a808b76e, type: 3}
+  hoistDropOffPrefab: {fileID: 1957977841338600854, guid: 713ee78e5a7cff943b8a77bceaf1ebf5, type: 3}
   killObjects:
   - {fileID: 4172736392335370764, guid: 688c2c4a2d858394c9dbb302019c5430, type: 3}
   - {fileID: 4968947892624799253, guid: 0c49321bd7b4b6e49b08b65c0d61a214, type: 3}
@@ -875,6 +876,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelBuilder: {fileID: 1746175353}
   MovePlayer:
+    m_PersistentCalls:
+      m_Calls: []
+  JumpPlayer:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1660057539 &9223372036854775807

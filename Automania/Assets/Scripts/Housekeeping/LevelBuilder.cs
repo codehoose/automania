@@ -36,6 +36,7 @@ public class LevelBuilder : MonoBehaviour
     private CollectablesList currentCollectables;
     private WallyMob wallyInstance;
     private Door doorInstance;
+    private GameObject hoistDropOffInstance;
 
     [Header("General")]
     [SerializeField] private int currentLevel = 0;
@@ -52,6 +53,7 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] private Ladder ladderPrefab;
     [SerializeField] private ZXObject blockPrefab;
     [SerializeField] private Collectable collectablePrefab;
+    [SerializeField] private GameObject hoistDropOffPrefab;
     [SerializeField] private GameObject[] killObjects;
     [SerializeField] private Door[] doorPrefabs;
     [SerializeField] private Enemy[] enemyPrefabs;
@@ -78,6 +80,8 @@ public class LevelBuilder : MonoBehaviour
         palette = new Color[8];
         tiledMap = TiledMapDeserializer.Load(mapFiles[currentLevel]);
         currentCollectables = collectablesList[currentLevel];
+
+        hoistDropOffInstance = Instantiate(hoistDropOffPrefab);
 
         for (int i = 0; i < 8; i++)
         {
@@ -231,8 +235,19 @@ public class LevelBuilder : MonoBehaviour
 
         foreach (var collectable in collectables)
         {
-            collectable.gameObject.SetActive(inWarehouse);
+            var placedOrCarried = GameController.Instance.GameState.CurrentCollectable == collectable.index ||
+                GameController.Instance.GameState.PlacedParts.Contains(collectable.index);
+
+            collectable.gameObject.SetActive(inWarehouse && !placedOrCarried);
+
+            if (collectable.index == GameController.Instance.GameState.CurrentCollectable)
+            {
+                var copy = MakeCollectable(collectable.index, Vector2.zero);
+                wallyInstance.PickupObject(collectable.index, copy.transform);
+            }
         }
+
+        hoistDropOffInstance.SetActive(!inWarehouse);
 
         describingRoom = false;
     }
@@ -244,11 +259,18 @@ public class LevelBuilder : MonoBehaviour
 
         foreach (var c in levelCollectables)
         {
-            var col = Instantiate(collectablePrefab, new Vector2(c.x, -c.y + ScreenTopOffset), Quaternion.identity);
-            col.index = c.properties[0].value;
-            col.SetSprite(currentCollectables.sprites[col.index]);
-            collectables.Add(col);
+            var index = c.properties[0].value;
+            var collectable = MakeCollectable(index, new Vector2(c.x, -c.y + ScreenTopOffset));
+            collectables.Add(collectable.GetComponent<Collectable>());
         }
+    }
+
+    private Transform MakeCollectable(int index, Vector2 pos)
+    {
+        var col = Instantiate(collectablePrefab, pos, Quaternion.identity);
+        col.index = index;
+        col.SetSprite(currentCollectables.sprites[col.index]);
+        return col.transform;
     }
 
     private Vector3 GetWallyStart(TileMapObject tileMapObject)

@@ -7,6 +7,8 @@ TagManager:
   - Door
   - Kill
   - Rung
+  - PlayerPickup
+  - HoistDropOff
   layers:
   - Default
   - TransparentFX
