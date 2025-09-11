@@ -37,6 +37,8 @@ public class LevelBuilder : MonoBehaviour
     private WallyMob wallyInstance;
     private Door doorInstance;
     private GameObject hoistDropOffInstance;
+    private GameObject hoistPistonsInstance;
+    private HoistCar hoistCarInstance;
 
     [Header("General")]
     [SerializeField] private int currentLevel = 0;
@@ -54,6 +56,7 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] private ZXObject blockPrefab;
     [SerializeField] private Collectable collectablePrefab;
     [SerializeField] private GameObject hoistDropOffPrefab;
+    [SerializeField] private GameObject hoistPistons;
     [SerializeField] private GameObject[] killObjects;
     [SerializeField] private Door[] doorPrefabs;
     [SerializeField] private Enemy[] enemyPrefabs;
@@ -68,6 +71,8 @@ public class LevelBuilder : MonoBehaviour
 
     private Color[] staticInkColours;
     private Color[] staticPaperColours;
+
+    public HoistCar HoistCar => collectablesList[currentLevel].carPrefab;
 
     private void Start()
     {
@@ -87,6 +92,8 @@ public class LevelBuilder : MonoBehaviour
         {
             palette[i] = zxSpectrumColours.GetPixel(i * CellSizePixels, 0);
         }
+
+        hoistPistonsInstance = Instantiate(hoistPistons, new Vector3(96, -136), Quaternion.identity);
 
         DescribeRoom();
         CreateCollectables();
@@ -160,6 +167,44 @@ public class LevelBuilder : MonoBehaviour
         ZXSpectrumScreen.Instance.SetStaticColours(inkColours, paperColours);
     }
 
+    public void PrepareCarDrop()
+    {
+        ClearComponentList(enemies);
+        ClearComponentList(ladders);
+        if (wallyInstance)
+        {
+            Destroy(wallyInstance.gameObject);
+            wallyInstance = null;
+        }
+        if (hoistCarInstance)
+        {
+            Destroy(hoistCarInstance.gameObject);
+            hoistCarInstance = null;
+        }
+
+        var objStartPos = 1 * PlayScreenColumnCount + 11;
+        for (var y = 0; y < 12; y++)
+        {
+            for (var x = 0; x < 10; x++)
+            {
+                var index = (objStartPos + y * PlayScreenColumnCount + x);
+                staticInkColours[index] = palette[currentCollectables.paletteIndex];
+                staticPaperColours[index] = palette[0];
+            }
+        }
+
+        objStartPos = 1 * PlayScreenColumnCount;
+        for (var y = 0; y < 7; y++)
+        {
+            for (var x = 0; x < 31; x++)
+            {
+                var index = (objStartPos + y * PlayScreenColumnCount + x);
+                staticInkColours[index] = palette[currentCollectables.paletteIndex];
+                staticPaperColours[index] = palette[0];
+            }
+        }
+    }
+
     public void ChangeRoom()
     {
         inWarehouse = !inWarehouse;
@@ -228,6 +273,23 @@ public class LevelBuilder : MonoBehaviour
         CreateEnemyObjects(tiledMapGroup.GetEnemies());
         CreateDoor(tiledMapGroup.GetDoor());
 
+        // Create Colours for the hoist car
+        if (!inWarehouse)
+        {
+            // It's 10 rows down, 12 columns across BUT we are 2 rows from the top
+            // anyway, so it's actually 8 from the perspective of the play field.
+            var objStartPos = 8 * PlayScreenColumnCount + 12;
+            for (var y = 0; y < 4; y++)
+            {
+                for (var x = 0; x < 8; x++)
+                {
+                    var index = (objStartPos + y * PlayScreenColumnCount + x);
+                    staticInkColours[index] = palette[currentCollectables.paletteIndex];
+                    staticPaperColours[index] = palette[0];
+                }
+            }
+        }
+
         ZXSpectrumScreen.Instance.SetStaticColours(staticInkColours, staticPaperColours);
 
         var wallyStart = GetWallyStart(tiledMapGroup.GetPlayerStart());
@@ -235,12 +297,12 @@ public class LevelBuilder : MonoBehaviour
 
         foreach (var collectable in collectables)
         {
-            var placedOrCarried = GameController.Instance.GameState.CurrentCollectable == collectable.index ||
-                GameController.Instance.GameState.PlacedParts.Contains(collectable.index);
+            var placedOrCarried = GameController.Instance.State.CurrentCollectable == collectable.index ||
+                GameController.Instance.State.PlacedParts.Contains(collectable.index);
 
             collectable.gameObject.SetActive(inWarehouse && !placedOrCarried);
 
-            if (collectable.index == GameController.Instance.GameState.CurrentCollectable)
+            if (collectable.index == GameController.Instance.State.CurrentCollectable)
             {
                 var copy = MakeCollectable(collectable.index, Vector2.zero);
                 wallyInstance.PickupObject(collectable.index, copy.transform);
@@ -248,6 +310,15 @@ public class LevelBuilder : MonoBehaviour
         }
 
         hoistDropOffInstance.SetActive(!inWarehouse);
+        if (hoistCarInstance)
+        {
+            hoistCarInstance.gameObject.SetActive(!inWarehouse);
+        }
+
+        if (hoistPistonsInstance)
+        {
+            hoistPistonsInstance.gameObject.SetActive(!inWarehouse);
+        }
 
         describingRoom = false;
     }
@@ -262,6 +333,13 @@ public class LevelBuilder : MonoBehaviour
             var index = c.properties[0].value;
             var collectable = MakeCollectable(index, new Vector2(c.x, -c.y + ScreenTopOffset));
             collectables.Add(collectable.GetComponent<Collectable>());
+        }
+
+        hoistCarInstance = Instantiate(collectablesList[currentLevel].carPrefab);
+        hoistCarInstance.transform.position = new Vector2(96, -80 + ScreenTopOffset);
+        if (hoistCarInstance)
+        {
+            hoistCarInstance.gameObject.SetActive(!inWarehouse);
         }
     }
 

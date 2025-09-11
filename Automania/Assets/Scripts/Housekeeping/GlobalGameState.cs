@@ -1,15 +1,18 @@
-using System;
 using System.Collections.Generic;
 
 public class GlobalGameState
 {
     public int CurrentCollectable = -1;
     public List<int> PlacedParts = new List<int>();
+    public GameState State = GameState.NormalGameplay;
+
+    public bool AllPartsCollected => PlacedParts.Count == 6;
 
     internal void DropObject()
     {
         if (CurrentCollectable < 0) return;
         PlacedParts.Add(CurrentCollectable);
+        GameController.Instance.HoistCar?.AcceptPart(CurrentCollectable);
         CurrentCollectable = -1;
     }
 }

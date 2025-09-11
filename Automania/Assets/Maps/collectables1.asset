@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: collectables1
   m_EditorClassIdentifier: 
   paletteIndex: 5
+  carPrefab: {fileID: 8251853625643541949, guid: 031040f0466c12f44ab3a375b3b32396, type: 3}
   sprites:
   - {fileID: 288049017, guid: a0a1c3cab1a54ce47a676b4b7f2d6c01, type: 3}
   - {fileID: 44152329, guid: a0a1c3cab1a54ce47a676b4b7f2d6c01, type: 3}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -19,13 +20,22 @@ public class GameController : MonoBehaviour
     private GlobalGameState gameState;
     private InputAction moveAction;
     private InputAction jumpAction;
+    private CarDrop carDropInstance;
 
     [SerializeField] private LevelBuilder levelBuilder;
+
+    [Header("Prefabs")]
+    [SerializeField] private CarDrop carDropPrefab;
+    
+    public HoistCar HoistCar
+    {
+        get => FindFirstObjectByType<HoistCar>();
+    }
 
     public UnityEvent<float, float> MovePlayer;
     public UnityEvent JumpPlayer;
 
-    public GlobalGameState GameState => gameState;
+    public GlobalGameState State => gameState;
 
     public void ChangeRoom()
     {
@@ -37,6 +47,12 @@ public class GameController : MonoBehaviour
         MovePlayer.AddListener(listener);
         JumpPlayer.AddListener(jumpListener);
         return cachedX;
+    }
+
+    private void UnregisterWally()
+    {
+        MovePlayer.RemoveAllListeners();
+        JumpPlayer.RemoveAllListeners();
     }
 
     private void Awake()
@@ -54,6 +70,67 @@ public class GameController : MonoBehaviour
         moveAction.canceled += MoveAction_canceled;
 
         jumpAction.performed += JumpAction_Performed;
+
+        carDropInstance = Instantiate(carDropPrefab, new Vector3(88, -96), Quaternion.identity);
+        carDropInstance.Init(levelBuilder.HoistCar);
+        carDropInstance.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (gameState.State == GameState.NormalGameplay)
+        {
+            if (gameState.AllPartsCollected)
+            {
+                DropCar();
+            }
+        }
+    }
+
+    public void EndLevel() => DropCar();
+
+
+    private void DropCar()
+    {
+        gameState.State = GameState.DropCar;
+        UnregisterWally();
+        levelBuilder.PrepareCarDrop();
+        StartCoroutine(DropTheCar());
+    }
+
+    IEnumerator DropTheCar()
+    {
+        carDropInstance.gameObject.SetActive(true);
+        var start = carDropInstance.transform.position;
+        var target = new Vector3(88, -152);
+
+        float time = 0f;
+        while (time < 1f)
+        {
+            var pos = Vector3.Lerp(start, target, time);
+            var npos = new Vector3((int)pos.x, (int)pos.y);
+            carDropInstance.transform.position = npos;
+            time += Time.deltaTime / 2f;
+            yield return null;
+        }
+
+        carDropInstance.transform.position = target;
+
+        var targetTransform = carDropInstance.Car;
+        start = targetTransform.position;
+        target = new Vector3(-64, targetTransform.position.y);
+
+        time = 0f;
+        
+        while (time < 1f)
+        {
+            var pos = Vector3.Lerp(start, target, time);
+            var npos = new Vector3((int)pos.x, (int)pos.y);
+            targetTransform.position = npos;
+            time += Time.deltaTime / 2f;
+            yield return null;
+        }
+        targetTransform.position = target;
     }
 
     private void JumpAction_Performed(InputAction.CallbackContext obj)

@@ -72,7 +72,7 @@ public class WallyMob : ZXMob
         if (Carrying) return;
         obj.SetParent(pickupRoot);
         obj.localPosition = Vector2.left * 8; // move left 8 pixels
-        GameController.Instance.GameState.CurrentCollectable = collectableIndex;
+        GameController.Instance.State.CurrentCollectable = collectableIndex;
     }
 
     public void DropCurrentObject()
@@ -80,7 +80,7 @@ public class WallyMob : ZXMob
         if (!Carrying) return;
 
         var child = pickupRoot.GetChild(0);
-        GameController.Instance.GameState.DropObject();
+        GameController.Instance.State.DropObject();
         Destroy(child.gameObject);
     }
 
