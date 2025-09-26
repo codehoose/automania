@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private float clock = 120f;
     private float cachedX;
     private float cachedY;
     private GlobalGameState gameState;
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
     private CarDrop carDropInstance;
 
     [SerializeField] private LevelBuilder levelBuilder;
+    [SerializeField] private HudController hudController;
 
     [Header("Prefabs")]
     [SerializeField] private CarDrop carDropPrefab;
@@ -85,6 +87,9 @@ public class GameController : MonoBehaviour
                 DropCar();
             }
         }
+
+        clock -= Time.deltaTime;
+        hudController.Time.Current = clock / 120f;
     }
 
     public void EndLevel() => DropCar();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LevelBuilder : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class LevelBuilder : MonoBehaviour
     private static int ScreenTopOffset = -16;
     public static int CellSizePixels = 8;
     private static int PlayScreenColumnCount = 32;
+    private static int FullScreenRowCount = 24;
     private static int PlayScreenRowCount = 22;
     public static int WallyHeight = 32;
     private static int WallyWidth = 16;
@@ -103,10 +105,10 @@ public class LevelBuilder : MonoBehaviour
     {
         if (describingRoom) return;
 
-        var inkColours = new Color[PlayScreenRowCount * PlayScreenColumnCount];
-        var paperColours = new Color[PlayScreenRowCount * PlayScreenColumnCount];
-        Array.Copy(staticInkColours, inkColours, PlayScreenRowCount * PlayScreenColumnCount);
-        Array.Copy(staticPaperColours, paperColours, PlayScreenRowCount * PlayScreenColumnCount);
+        var inkColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
+        var paperColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
+        Array.Copy(staticInkColours, inkColours, FullScreenRowCount * PlayScreenColumnCount);
+        Array.Copy(staticPaperColours, paperColours, FullScreenRowCount * PlayScreenColumnCount);
 
         var objects = new List<TempAttr>();
 
@@ -211,6 +213,16 @@ public class LevelBuilder : MonoBehaviour
         DescribeRoom();
     }
 
+    private void Plot(Color[] colours, int x, int y, Color colour, int runSize = 1)
+    {
+        var yy = 23 - y;
+        for (int xx = x; xx < x + runSize; xx++)
+        {
+            var index = yy * PlayScreenColumnCount + xx;
+            colours[index] = colour;
+        }
+    }
+
     public void DescribeRoom()
     {
         describingRoom = true;
@@ -242,8 +254,19 @@ public class LevelBuilder : MonoBehaviour
         var paperGroup = tiledMapGroup.GetPaper().data;
         var blockGroup = tiledMapGroup.GetBlocks().data;
 
-        staticInkColours = new Color[PlayScreenRowCount * PlayScreenColumnCount];
-        staticPaperColours = new Color[PlayScreenRowCount * PlayScreenColumnCount];
+        staticInkColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
+        staticPaperColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
+
+        Plot(staticInkColours, 0, 0, palette[3], 6); // Score
+        Plot(staticInkColours, 6, 0, palette[3], 6); // Score Indicator
+        Plot(staticInkColours, 0, 1, palette[2], 5); // Time
+        Plot(staticInkColours, 5, 1, palette[6], 10); // Time Progress Bar
+        Plot(staticInkColours, 16, 0, palette[4], 6); // Lives
+        Plot(staticInkColours, 22, 0, palette[7], 10); // Lives Indicator Top Row
+        Plot(staticInkColours, 22, 1, palette[7], 10); // Lives Indicator Bottom Row
+        Plot(staticInkColours, 16, 1, palette[7], 5); // Car Indicator
+
+
 
         for (int y = 0; y < PlayScreenRowCount; y++)
         {
@@ -322,6 +345,8 @@ public class LevelBuilder : MonoBehaviour
 
         describingRoom = false;
     }
+
+
 
     private void CreateCollectables()
     {

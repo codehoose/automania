@@ -158,12 +158,12 @@ public class WallyMob : ZXMob
         }
     }
 
-    private void OnGUI()
-    {
-        GUILayout.BeginHorizontal();
-        GUILayout.Label($"NearTop: {isNearTop}, NearBottom: {isNearBottom}");
-        GUILayout.EndHorizontal();
-    }
+    //private void OnGUI()
+    //{
+    //    GUILayout.BeginHorizontal();
+    //    GUILayout.Label($"NearTop: {isNearTop}, NearBottom: {isNearBottom}");
+    //    GUILayout.EndHorizontal();
+    //}
 
     public override void FixedUpdate()
     {
