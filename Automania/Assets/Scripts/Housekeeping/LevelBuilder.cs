@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class LevelBuilder : MonoBehaviour
 {
@@ -36,10 +35,11 @@ public class LevelBuilder : MonoBehaviour
     private List<GameObject> killerObjects;
     private TiledMapFile tiledMap;
     private CollectablesList currentCollectables;
-    private WallyMob wallyInstance;
+    //private WallyMob wallyInstance;
     private Door doorInstance;
     private GameObject hoistDropOffInstance;
     private GameObject hoistPistonsInstance;
+    private GameObject gameOverInstance;
     private HoistCar hoistCarInstance;
 
     [Header("General")]
@@ -52,7 +52,6 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] private CollectablesList[] collectablesList;
 
     [Header("Prefabs")]
-    [SerializeField] private WallyMob wallyMob;
     [SerializeField] private Conveyor conveyorPrefab;
     [SerializeField] private Ladder ladderPrefab;
     [SerializeField] private ZXObject blockPrefab;
@@ -62,10 +61,11 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] private GameObject[] killObjects;
     [SerializeField] private Door[] doorPrefabs;
     [SerializeField] private Enemy[] enemyPrefabs;
+    [SerializeField] private GameObject gameOverPrefab;
 
     [Header("ZX Spectrum")]
     [SerializeField] private Texture2D zxSpectrumColours;
-    
+
     [Header("Sprites")]
     [SerializeField] private Sprite[] blockSprites;
     [SerializeField] private ConveyorBlockStapes leftToRight;
@@ -75,6 +75,8 @@ public class LevelBuilder : MonoBehaviour
     private Color[] staticPaperColours;
 
     public HoistCar HoistCar => collectablesList[currentLevel].carPrefab;
+
+    public Vector3 WallyStartPosition { get; private set; }
 
     private void Start()
     {
@@ -110,6 +112,16 @@ public class LevelBuilder : MonoBehaviour
         Array.Copy(staticInkColours, inkColours, FullScreenRowCount * PlayScreenColumnCount);
         Array.Copy(staticPaperColours, paperColours, FullScreenRowCount * PlayScreenColumnCount);
 
+        if (GameController.Instance.WallyDeadInstance)
+        {
+            var wallyInstance = GameController.Instance.WallyDeadInstance;
+            var x = (int)((wallyInstance.transform.position.x / 8) - 2);
+            var y = (int)((-wallyInstance.transform.position.y / 8) - 5);
+
+            Plot(inkColours, x, y, palette[7], 5, 3);
+            Plot(inkColours, x, y + 2, palette[6], 5, 3);
+        }
+
         var objects = new List<TempAttr>();
 
         objects.AddRange(collectables.Where(c => !c.collected && inWarehouse).Select(c => new TempAttr
@@ -131,7 +143,9 @@ public class LevelBuilder : MonoBehaviour
             width = 2
         }));
 
-        if (wallyInstance)
+        if (GameController.Instance.WallyInstance)
+        {
+            var wallyInstance = GameController.Instance.WallyInstance;
             objects.Add(new TempAttr()
             {
                 x = wallyInstance.transform.position.x - WallyWidth / 2,
@@ -141,6 +155,7 @@ public class LevelBuilder : MonoBehaviour
                 width = WallyWidth / CellSizePixels,
                 centerOffset = WallyWidth / 2
             });
+        }
 
         foreach (var obj in objects)
         {
@@ -171,6 +186,8 @@ public class LevelBuilder : MonoBehaviour
 
     public void PrepareCarDrop()
     {
+        var wallyInstance = GameController.Instance.WallyInstance;
+
         ClearComponentList(enemies);
         ClearComponentList(ladders);
         if (wallyInstance)
@@ -213,29 +230,47 @@ public class LevelBuilder : MonoBehaviour
         DescribeRoom();
     }
 
-    private void Plot(Color[] colours, int x, int y, Color colour, int runSize = 1)
+    public void GameOver()
     {
-        var yy = 23 - y;
-        for (int xx = x; xx < x + runSize; xx++)
+        ClearEverything();
+        ClearComponentList(collectables);
+
+        gameOverInstance = Instantiate(gameOverPrefab, Vector3.zero, Quaternion.identity);
+
+        staticInkColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
+        staticPaperColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
+
+        Array.Fill(staticPaperColours, palette[0]); // Fill with black paper.
+
+        DoHudAttrs();
+        Plot(staticInkColours, 0, 2, palette[5], 32); // The top bar is cyan
+        Plot(staticInkColours, 0, 3, palette[2], 32, 20);
+        Plot(staticInkColours, 0, 23, palette[6], 32);
+
+        ZXSpectrumScreen.Instance.SetStaticColours(staticInkColours, staticPaperColours);
+    }
+
+    private void Plot(Color[] colours, int x, int y, Color colour, int width = 1, int height = 1)
+    {
+        for (int yt = y; yt < y + height; yt++)
         {
-            var index = yy * PlayScreenColumnCount + xx;
-            colours[index] = colour;
+            var yy = 23 - yt;
+            for (int xx = x; xx < x + width; xx++)
+            {
+                var index = yy * PlayScreenColumnCount + xx;
+                colours[index] = colour;
+            }
         }
     }
 
-    public void DescribeRoom()
+    private void ClearEverything()
     {
-        describingRoom = true;
-
         ClearComponentList(enemies);
         ClearComponentList(conveyors);
         ClearComponentList(charBlocks);
         ClearComponentList(ladders);
-        if (wallyInstance)
-        {
-            Destroy(wallyInstance.gameObject);
-            wallyInstance = null;
-        }
+
+        GameController.Instance.DestroyWally();
 
         if (doorInstance)
         {
@@ -248,6 +283,25 @@ public class LevelBuilder : MonoBehaviour
             Destroy(ko);
         }
         killerObjects.Clear();
+    }
+
+    private void DoHudAttrs()
+    {
+        Plot(staticInkColours, 0, 0, palette[3], 6); // Score
+        Plot(staticInkColours, 6, 0, palette[7], 6); // Score Indicator
+        Plot(staticInkColours, 0, 1, palette[2], 5); // Time
+        Plot(staticInkColours, 5, 1, palette[6], 10); // Time Progress Bar
+        Plot(staticInkColours, 16, 0, palette[4], 6); // Lives
+        Plot(staticInkColours, 22, 0, palette[7], 10); // Lives Indicator Top Row
+        Plot(staticInkColours, 22, 1, palette[7], 10); // Lives Indicator Bottom Row
+        Plot(staticInkColours, 16, 1, palette[7], 5); // Car Indicator
+    }
+
+    public void DescribeRoom()
+    {
+        describingRoom = true;
+
+        ClearEverything();
 
         var tiledMapGroup = inWarehouse ? tiledMap.GetWorkshop() : tiledMap.GetHoist();
         var inkGroup = tiledMapGroup.GetInk().data;
@@ -257,16 +311,7 @@ public class LevelBuilder : MonoBehaviour
         staticInkColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
         staticPaperColours = new Color[FullScreenRowCount * PlayScreenColumnCount];
 
-        Plot(staticInkColours, 0, 0, palette[3], 6); // Score
-        Plot(staticInkColours, 6, 0, palette[3], 6); // Score Indicator
-        Plot(staticInkColours, 0, 1, palette[2], 5); // Time
-        Plot(staticInkColours, 5, 1, palette[6], 10); // Time Progress Bar
-        Plot(staticInkColours, 16, 0, palette[4], 6); // Lives
-        Plot(staticInkColours, 22, 0, palette[7], 10); // Lives Indicator Top Row
-        Plot(staticInkColours, 22, 1, palette[7], 10); // Lives Indicator Bottom Row
-        Plot(staticInkColours, 16, 1, palette[7], 5); // Car Indicator
-
-
+        DoHudAttrs();
 
         for (int y = 0; y < PlayScreenRowCount; y++)
         {
@@ -316,7 +361,7 @@ public class LevelBuilder : MonoBehaviour
         ZXSpectrumScreen.Instance.SetStaticColours(staticInkColours, staticPaperColours);
 
         var wallyStart = GetWallyStart(tiledMapGroup.GetPlayerStart());
-        wallyInstance = Instantiate(wallyMob, wallyStart, Quaternion.identity);
+        GameController.Instance.CreateWally(wallyStart);
 
         foreach (var collectable in collectables)
         {
@@ -328,7 +373,7 @@ public class LevelBuilder : MonoBehaviour
             if (collectable.index == GameController.Instance.State.CurrentCollectable)
             {
                 var copy = MakeCollectable(collectable.index, Vector2.zero);
-                wallyInstance.PickupObject(collectable.index, copy.transform);
+                GameController.Instance.WallyInstance.PickupObject(collectable.index, copy.transform);
             }
         }
 
@@ -345,8 +390,6 @@ public class LevelBuilder : MonoBehaviour
 
         describingRoom = false;
     }
-
-
 
     private void CreateCollectables()
     {
@@ -379,7 +422,8 @@ public class LevelBuilder : MonoBehaviour
     private Vector3 GetWallyStart(TileMapObject tileMapObject)
     {
         if (tileMapObject == null) return Vector3.zero;
-        return new Vector3(tileMapObject.x, -tileMapObject.y + ScreenTopOffset);
+        WallyStartPosition = new Vector3(tileMapObject.x, -tileMapObject.y + ScreenTopOffset);
+        return WallyStartPosition;
     }
 
     private void CreateEnemyObjects(TileMapObject[] tileMapObjects)

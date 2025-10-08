@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4854816766975151563}
   - component: {fileID: 6926185557728758612}
   - component: {fileID: 5012133280250049926}
+  - component: {fileID: 1549249248240051995}
   m_Layer: 0
   m_Name: Computer
-  m_TagString: Untagged
+  m_TagString: Kill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b8193f10de03b43813431789921273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitToStartSeconds: 0
   sprites:
   - {fileID: 12756067, guid: a0a1c3cab1a54ce47a676b4b7f2d6c01, type: 3}
   - {fileID: 943944542, guid: a0a1c3cab1a54ce47a676b4b7f2d6c01, type: 3}
@@ -104,3 +106,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1549249248240051995
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385939215412479323}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 8, y: -8}
+  m_Radius: 1

@@ -2,5 +2,8 @@ public enum GameState
 {
     NormalGameplay,
     DropCar,
-    DriveOff
+    DriveOff,
+    WallyDead,
+    ShowGameOver,
+    GameOver
 }

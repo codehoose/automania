@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
+    private static float MINUTE_AND_A_HALF = 90f;
+    private static float DEATH_WAIT_TIME = 1f;
+
     private static GameController instance;
 
     public static GameController Instance
@@ -15,19 +18,22 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private float clock = 120f;
+    private float clock = MINUTE_AND_A_HALF;
     private float cachedX;
     private float cachedY;
     private GlobalGameState gameState;
     private InputAction moveAction;
     private InputAction jumpAction;
     private CarDrop carDropInstance;
+    private WallyMob wallyInstance;
 
     [SerializeField] private LevelBuilder levelBuilder;
     [SerializeField] private HudController hudController;
 
     [Header("Prefabs")]
     [SerializeField] private CarDrop carDropPrefab;
+    [SerializeField] private WallyMob wallyMob;
+    [SerializeField] private GameObject deadWallyPrefab;
     
     public HoistCar HoistCar
     {
@@ -36,22 +42,51 @@ public class GameController : MonoBehaviour
 
     public UnityEvent<float, float> MovePlayer;
     public UnityEvent JumpPlayer;
+    private GameObject deadWallyInstance;
+    private float deathWaitTime;
 
     public GlobalGameState State => gameState;
+
+    public WallyMob WallyInstance => wallyInstance;
+    public GameObject WallyDeadInstance => deadWallyInstance;
 
     public void ChangeRoom()
     {
         levelBuilder.ChangeRoom();
     }
 
+    public void CreateWally(Vector3 start)
+    {
+        wallyInstance = Instantiate(wallyMob, start, Quaternion.identity);
+    }
+
+    public void DestroyWally()
+    {
+        if (wallyInstance)
+        {
+            Destroy(wallyInstance.gameObject);
+            wallyInstance = null;
+        }
+    }
+
     public float RegisterWally(UnityAction<float, float> listener, UnityAction jumpListener)
     {
+        MovePlayer.RemoveAllListeners();
+        JumpPlayer.RemoveAllListeners();
+
         MovePlayer.AddListener(listener);
         JumpPlayer.AddListener(jumpListener);
         return cachedX;
     }
 
-    private void UnregisterWally()
+    public void DropObject()
+    {
+        State.AddTimePoints(clock / MINUTE_AND_A_HALF);
+        State.DropObject();
+        clock = MINUTE_AND_A_HALF;
+    }
+
+    public void UnregisterWally()
     {
         MovePlayer.RemoveAllListeners();
         JumpPlayer.RemoveAllListeners();
@@ -76,6 +111,8 @@ public class GameController : MonoBehaviour
         carDropInstance = Instantiate(carDropPrefab, new Vector3(88, -96), Quaternion.identity);
         carDropInstance.Init(levelBuilder.HoistCar);
         carDropInstance.gameObject.SetActive(false);
+
+        hudController.Lives.Lives = State.Lives - 1;
     }
 
     private void Update()
@@ -86,14 +123,51 @@ public class GameController : MonoBehaviour
             {
                 DropCar();
             }
-        }
 
-        clock -= Time.deltaTime;
-        hudController.Time.Current = clock / 120f;
+            clock -= Time.deltaTime;
+            hudController.Time.Current = clock / MINUTE_AND_A_HALF;
+            hudController.Score.Counter = State.Score;
+            hudController.Lives.Lives = State.Lives - 1;
+        }
+        else if (gameState.State == GameState.WallyDead || gameState.State == GameState.ShowGameOver)
+        {
+            deathWaitTime -= Time.deltaTime;
+            if (deathWaitTime <= 0f)
+            {
+                if (gameState.State == GameState.ShowGameOver)
+                {
+                    Destroy(deadWallyInstance);
+                    deadWallyInstance = null;
+                    levelBuilder.GameOver();
+                    gameState.State = GameState.GameOver;
+                }
+                else
+                {
+                    Destroy(deadWallyInstance);
+                    deadWallyInstance = null;
+                    levelBuilder.DescribeRoom();
+                    clock = MINUTE_AND_A_HALF;
+                    State.State = GameState.NormalGameplay;
+                }
+            }
+        }
     }
 
     public void EndLevel() => DropCar();
 
+    public void WallyKilled()
+    {
+        gameState.State = GameState.WallyDead;
+        var pos = wallyInstance.transform.position;
+        DestroyWally();
+        deadWallyInstance = Instantiate(deadWallyPrefab, pos, Quaternion.identity);
+        deathWaitTime = DEATH_WAIT_TIME;
+        gameState.Lives--;
+        if (gameState.Lives == 0)
+        {
+            gameState.State = GameState.ShowGameOver;
+        }
+    }
 
     private void DropCar()
     {

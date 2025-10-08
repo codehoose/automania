@@ -26,6 +26,7 @@ public class WallyMob : ZXMob
     private Ladder currentLadder;
     private MovementState state;
 
+    [SerializeField] private bool invincible;
     [SerializeField] private Transform pickupRoot;
     [SerializeField] private Sprite[] walking;
     [SerializeField] private Sprite[] climbing;
@@ -54,8 +55,11 @@ public class WallyMob : ZXMob
         }
         else if (collision.tag == "HoistDropOff")
         {
-            // TODO: Increment player score
             DropCurrentObject();
+        }
+        else if (collision.tag == "Kill" && !invincible)
+        {
+            GameController.Instance.WallyKilled();
         }
     }
 
@@ -73,6 +77,7 @@ public class WallyMob : ZXMob
         obj.SetParent(pickupRoot);
         obj.localPosition = Vector2.left * 8; // move left 8 pixels
         GameController.Instance.State.CurrentCollectable = collectableIndex;
+        GameController.Instance.State.PickupObject();
     }
 
     public void DropCurrentObject()
@@ -80,7 +85,7 @@ public class WallyMob : ZXMob
         if (!Carrying) return;
 
         var child = pickupRoot.GetChild(0);
-        GameController.Instance.State.DropObject();
+        GameController.Instance.DropObject();
         Destroy(child.gameObject);
     }
 
@@ -103,7 +108,7 @@ public class WallyMob : ZXMob
 
     private void OnDestroy()
     {
-        GameController.Instance?.MovePlayer.RemoveListener(Move_Changed);
+        // TODO: Is this going to be a problem? There is no unregister
     }
 
     private void Jump_Changed()

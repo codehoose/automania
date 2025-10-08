@@ -780,7 +780,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: cadd2af297ba96342b6f81ef942ce873, type: 3}
   collectablesList:
   - {fileID: 11400000, guid: 76837b2b77d05484bbdc1bea091f6fad, type: 2}
-  wallyMob: {fileID: 7714681936301489481, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
   conveyorPrefab: {fileID: 329849741272508955, guid: e9a0840f670e9bf44be01d2ba7812b5f, type: 3}
   ladderPrefab: {fileID: 868899759262820802, guid: b73abb76fed1f694fabeeb4ddc9246ce, type: 3}
   blockPrefab: {fileID: 2466568146730122977, guid: 8b417b0ca25847946bcdc304335f0e47, type: 3}
@@ -796,6 +795,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6894395079437240371, guid: 0f00a2e6389aadc44a7f8f46b1d4cf10, type: 3}
   - {fileID: 6926185557728758612, guid: 9d68a289592dba146bb522f64e0d1aa2, type: 3}
+  gameOverPrefab: {fileID: 1082768798168434480, guid: be67aabd669fab04cbae2c98c77b913c, type: 3}
   zxSpectrumColours: {fileID: 2800000, guid: 6017287ad197d36479bd9de60b02b9a3, type: 3}
   blockSprites:
   - {fileID: 8136577010925380142, guid: e14b0dd6808304d47817b43d76234cad, type: 3}
@@ -878,6 +878,8 @@ MonoBehaviour:
   levelBuilder: {fileID: 1746175353}
   hudController: {fileID: 5362882962047530320}
   carDropPrefab: {fileID: 2905637904288417381, guid: 458c6a3abc0c81a4b969157cdf039692, type: 3}
+  wallyMob: {fileID: 7714681936301489481, guid: a3a69678314d68043846b6dc735b6e24, type: 3}
+  deadWallyPrefab: {fileID: 5010635339770088520, guid: 004fadaf4f731384ebacf5844803faf7, type: 3}
   MovePlayer:
     m_PersistentCalls:
       m_Calls: []

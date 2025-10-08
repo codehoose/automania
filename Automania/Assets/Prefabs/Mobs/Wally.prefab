@@ -107,6 +107,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b468982e85fb344183a81835420a298, type: 2}
   drawOrder: 9000
   addOnStartup: 1
+  invincible: 0
   pickupRoot: {fileID: 6982721806440627831}
   walking:
   - {fileID: 5788178879466504629, guid: c93f74679c2c1ce468eb150ac9cd08f7, type: 3}
