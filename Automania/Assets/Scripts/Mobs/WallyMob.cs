@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class WallyMob : ZXMob
 {
@@ -10,10 +11,13 @@ public class WallyMob : ZXMob
         Falling
     }
 
+    private const float ProbeDistance = 8f;
+    private const float ProbeDistanceShort = 4f;
+
     private static float SpeedPixelsPerSecond = 32f;
     private static float JumpSpeedPixelsPerSecond = 34f;
     private static float NearGroundFudgeFactorPixels = 2f;
-
+    
     private SpriteRenderer spr;
     private bool stopProcessingCollisions;
     private bool isNearTop;
@@ -25,11 +29,16 @@ public class WallyMob : ZXMob
 
     private Ladder currentLadder;
     private MovementState state;
+    private bool isFreeFalling;
 
     [SerializeField] private bool invincible;
     [SerializeField] private Transform pickupRoot;
     [SerializeField] private Sprite[] walking;
     [SerializeField] private Sprite[] climbing;
+
+    [Header("Ground Probes")]
+    [SerializeField] private Transform leftGroundProbe;
+    [SerializeField] private Transform rightGroundProbe;
     private float jumpInitialY;
     private float jumpTime;
     private float jumpX;
@@ -170,6 +179,25 @@ public class WallyMob : ZXMob
     //    GUILayout.EndHorizontal();
     //}
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(leftGroundProbe.position, 2f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(leftGroundProbe.position + Vector3.down * ProbeDistanceShort, 2f);
+        Gizmos.DrawWireSphere(leftGroundProbe.position + Vector3.down * ProbeDistance, 2f);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(rightGroundProbe.position, 2f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(rightGroundProbe.position + Vector3.down * ProbeDistanceShort, 2f);
+        Gizmos.DrawWireSphere(rightGroundProbe.position + Vector3.down * ProbeDistance, 2f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(leftGroundProbe.position, leftGroundProbe.position + Vector3.down * ProbeDistanceShort);
+        Gizmos.DrawLine(rightGroundProbe.position, rightGroundProbe.position + Vector3.down * ProbeDistanceShort);
+    }
+
     public override void FixedUpdate()
     {
         if (state == MovementState.Climbing)
@@ -212,7 +240,7 @@ public class WallyMob : ZXMob
                 ResetAnimation();
             }
         }
-        else if (state == MovementState.Jumping)
+        else if (state == MovementState.Jumping || state == MovementState.Falling)
         {
             pos.y += jumpY * JumpSpeedPixelsPerSecond * Time.deltaTime;
             jumpTime += Time.deltaTime;
@@ -224,10 +252,30 @@ public class WallyMob : ZXMob
 
             if (jumpTime >= 1f)
             {
-                state = MovementState.Walking;
-                pos.y = jumpInitialY;
-                x = jumpX;
-                spr.flipX = x == 0 ? spr.flipX : x < 0;
+                if (IsOnPlatform())
+                {
+                    if (isFreeFalling)
+                    {
+                        isFreeFalling = false;
+                        GameController.Instance.WallyKilled();
+                    }
+                    else
+                    {
+                        state = MovementState.Walking;
+                        pos.y = jumpInitialY;
+                        x = jumpX;
+                        spr.flipX = x == 0 ? spr.flipX : x < 0;
+                    }
+                }
+                else
+                {
+                    state = MovementState.Falling;
+                    x = 0;
+                    if (pos.y < jumpInitialY - 8)
+                    {
+                        isFreeFalling = true;
+                    }
+                }
             }
         }
 
@@ -239,6 +287,15 @@ public class WallyMob : ZXMob
         base.FixedUpdate();
     }
 
+    private bool IsOnPlatform(float probeDistance = ProbeDistance)
+    {
+        var hitTestLeft = Physics2D.OverlapCircleAll(leftGroundProbe.position + Vector3.down * ProbeDistanceShort, 1f);
+        var hitTestRight = Physics2D.OverlapCircleAll(rightGroundProbe.position + Vector3.down * ProbeDistanceShort, 1f);
+        return hitTestLeft.Concat(hitTestRight)
+                          .Where(hit => hit.gameObject.tag == "Walkable")
+                          .Any();
+    }
+    
     private bool OverALadder()
     {
         if (!currentLadder) return false;

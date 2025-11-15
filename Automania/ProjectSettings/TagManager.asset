@@ -9,6 +9,7 @@ TagManager:
   - Rung
   - PlayerPickup
   - HoistDropOff
+  - Walkable
   layers:
   - Default
   - TransparentFX
